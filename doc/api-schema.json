@@ -1,0 +1,1583 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Cloud functions API of PSL",
+    "description": "List of functions exposed for PSL project",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://url-to-your-app",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/initializeUser": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/initializeUser.ts",
+        "tags": [
+          "authSessionManagement"
+        ],
+        "summary": "Provides information about user which can be utilized by the app.",
+        "description": "Allows to update user with new campaign ID if provided",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "User isn't mandatory. If not provided, new will be created and ID of that user returned. Otherwise, ID will be equal to null",
+                    "required": [
+                      "version"
+                    ],
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          "1"
+                        ]
+                      },
+                      "campaignId": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/LoggedInUser"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Response when user initiation is successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "oneOf": [
+                        {
+                          "description": "When no user identifiers provided, expect new anonId to be provided",
+                          "type": "object",
+                          "properties": {
+                            "userId": {
+                              "type": "string"
+                            },
+                            "allowedCountries": {
+                              "type": "array",
+                              "description": "If empty, all countries shall be allowed",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "redirectDestination": {
+                              "type": "string",
+                              "enum": [
+                                "homepage",
+                                "test"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "description": "When anon ID is provided, expect data based on that anonID",
+                          "type": "object",
+                          "required": [
+                            "userId",
+                            "allowedCountries",
+                            "redirectDestination"
+                          ],
+                          "properties": {
+                            "userId": {
+                              "type": "string",
+                              "nullable": true,
+                              "description": "It's NOT a null only in a case when new session is initiated (new anonID is generated)"
+                            },
+                            "allowedCountries": {
+                              "type": "array",
+                              "description": "If empty, all countries shall be allowed",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "redirectDestination": {
+                              "type": "string",
+                              "enum": [
+                                "homepage",
+                                "test"
+                              ]
+                            },
+                            "downgrade": {
+                              "type": "boolean",
+                              "description": "If existing anon ID not found, or user/session token is invalid or not existing user is used, it is returned with true value."
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/requestLink": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/requestLink.ts",
+        "tags": [
+          "authSessionManagement"
+        ],
+        "summary": "Generates magic link and sets anon user to be upgraded",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "anonId",
+                      "email",
+                      "version"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "anonId": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "ascend": {
+                        "type": "object",
+                        "properties": {
+                          "answerSet": {
+                            "$ref": "#/components/schemas/AnswerSet"
+                          },
+                          "plan": {
+                            "$ref": "#/components/schemas/NewPlan"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User generated, provides anon user ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/checkLink": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/checkLink.ts",
+        "tags": [
+          "authSessionManagement"
+        ],
+        "summary": "Verifies magic link token provided by user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "email",
+                      "magicLinkTokenFromLink"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "magicLinkTokenFromLink": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User is authenticated. Session token includes user's email and roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "sessionToken": {
+                          "type": "string"
+                        },
+                        "redirectDestination": {
+                          "type": "string",
+                          "enum": [
+                            "test",
+                            "results",
+                            "plan"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteUser": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/deleteUser.ts",
+        "tags": [
+          "authSessionManagement"
+        ],
+        "summary": "Remove 'permanentUser' information from user entity",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "user"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/LoggedInUser"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetchUserAnswers": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/fetchUserAnswers.ts",
+        "tags": [
+          "withdrawUserRelatedEntity"
+        ],
+        "summary": "Withdraw user's latest set answers, including used constants and questions",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "user"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/LoggedInUser"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User answers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/SavedAnswerSetResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetchUserPlan": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/fetchUserPlan.ts",
+        "tags": [
+          "withdrawUserRelatedEntity"
+        ],
+        "summary": "Withdraw plan created by user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "user"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/LoggedInUser"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/SavedPlanResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetchCampaigns": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/fetchCampaigns.ts",
+        "tags": [
+          "campaignManagement"
+        ],
+        "summary": "Withdraw campaigns user can modify based on CAMPAIGN_MANAGER role",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "user"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          "1"
+                        ]
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/LoggedInUser"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaigns list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Campaign"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetchCampaignStatistics": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/fetchCampaignStatistics.ts",
+        "tags": [
+          "campaignManagement"
+        ],
+        "summary": "Withdraw campaigns user can modify based on CAMPAIGN_MANAGER role",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "result": {
+                        "type": "object",
+                        "required": [
+                          "version",
+                          "user",
+                          "campaignId"
+                        ],
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "description": "API Version",
+                            "enum": [
+                              "1"
+                            ]
+                          },
+                          "user": {
+                            "$ref": "#/components/schemas/LoggedInUser"
+                          },
+                          "campaignId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaign statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "answersCount": {
+                          "type": "string"
+                        },
+                        "plansCount": {
+                          "type": "string"
+                        },
+                        "feedbacksCount": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saveCampaign": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/saveCampaign.ts",
+        "tags": [
+          "campaignManagement"
+        ],
+        "summary": "Upsert campaign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "user",
+                      "campaign"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "campaign": {
+                        "oneOf": [
+                          {
+                            "$ref": "#/components/schemas/UpdateCampaign"
+                          },
+                          {
+                            "$ref": "#/components/schemas/NewCampaign"
+                          }
+                        ]
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/EitherAnonOrLoggedInUser"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saveUserAnswers": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/saveUserAnswers.ts",
+        "tags": [
+          "persistUserRelatedEntity"
+        ],
+        "summary": "Persist user's answers",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "user"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/EitherAnonOrLoggedInUser"
+                      },
+                      "answerSet": {
+                        "$ref": "#/components/schemas/AnswerSet"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User answers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "$ref": "#/components/schemas/SavedAnswerSetResponse"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saveUserFeedback": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/saveUserFeedback.ts",
+        "tags": [
+          "persistUserRelatedEntity"
+        ],
+        "summary": "Persist user's feedback options",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "answerSetId",
+                      "user",
+                      "selectedOptions"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "answerSetId": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/EitherAnonOrLoggedInUser"
+                      },
+                      "feedback": {
+                        "type": "object",
+                        "properties": {
+                          "selectedOptions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User feedback",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "$ref": "#/components/schemas/FeedbackResponseData"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saveUserPlan": {
+      "post": {
+        "operationId": "packages/enduser-ui/src/firebase/api/saveUserPlan.ts",
+        "tags": [
+          "persistUserRelatedEntity"
+        ],
+        "summary": "Persist user's plan",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "data"
+                ],
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "required": [
+                      "version",
+                      "user",
+                      "answerSetId",
+                      "plan"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "description": "API Version",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "answerSetId": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/EitherAnonOrLoggedInUser"
+                      },
+                      "plan": {
+                        "$ref": "#/components/schemas/NewPlan"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/constants/{countryCode}": {
+      "get": {
+        "operationId": "packages/enduser-ui/src/firebase/db/constants.ts",
+        "parameters": [
+          {
+            "name": "countryCode",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of constants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string"
+                    },
+                    "constants": {
+                      "type": "object",
+                      "additionalProperties": true,
+                      "example": {
+                        "SOME_CONST_1": 50,
+                        "SOME_CONST_2": 100,
+                        "SOME_CONST_3": 150
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feedbackCards/{countryCode}": {
+      "get": {
+        "operationId": "packages/enduser-ui/src/firebase/db/feedbackCards.ts",
+        "parameters": [
+          {
+            "name": "countryCode",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of feedback cards",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string"
+                    },
+                    "feedbackCards": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/FeedbackCard"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/questions/{countryCode}": {
+      "get": {
+        "operationId": "packages/enduser-ui/src/firebase/db/questions.ts",
+        "parameters": [
+          {
+            "name": "countryCode",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of questions for the questionnaire",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string"
+                    },
+                    "questions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Question"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recommendedActions/{countryCode}": {
+      "get": {
+        "operationId": "packages/enduser-ui/src/firebase/db/recommendedActions.ts",
+        "parameters": [
+          {
+            "name": "countryCode",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of recommended actions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string"
+                    },
+                    "recommendedActions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RawRecommendedAction"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SavedPlanResponse": {
+        "type": "object",
+        "properties": {
+          "selectedActions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CalculatedAction"
+            }
+          },
+          "skippedActions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkippedAction"
+            }
+          }
+        }
+      },
+      "FeedbackResponseData": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SavedAnswerSetResponse": {
+        "type": "object",
+        "properties": {
+          "answerSetId": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "ordinaryAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CalculatedAnswer"
+            }
+          },
+          "categorizedFootprint": {
+            "$ref": "#/components/schemas/CategorizedFootprint"
+          }
+        }
+      },
+      "SkippedAction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "NewSelectedActions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "new",
+                "inProgress",
+                "completed"
+              ]
+            }
+          }
+        }
+      },
+      "CalculatedAction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "actionGroup": {
+            "type": "string"
+          },
+          "calculatedImpact": {
+            "type": "number"
+          },
+          "percentReduction": {
+            "type": "number"
+          },
+          "actionsVersion": {
+            "type": "string"
+          }
+        }
+      },
+      "LoggedInUser": {
+        "type": "object",
+        "required": [
+          "email",
+          "sessionToken"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "sessionToken": {
+            "type": "string"
+          }
+        }
+      },
+      "EitherAnonOrLoggedInUser": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/LoggedInUser"
+          },
+          {
+            "type": "object",
+            "required": [
+              "anonId"
+            ],
+            "properties": {
+              "anonId": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "NewAnswer": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "string"
+          },
+          "choiceText": {
+            "type": "string"
+          },
+          "sortKey": {
+            "type": "string"
+          }
+        }
+      },
+      "CalculatedAnswer": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "string"
+          },
+          "questionText": {
+            "type": "string"
+          },
+          "choiceText": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "sortKey": {
+            "type": "string"
+          },
+          "variables": {
+            "type": "object"
+          },
+          "footprint": {
+            "type": "number"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          }
+        }
+      },
+      "CategorizedFootprint": {
+        "type": "object",
+        "properties": {
+          "housing": {
+            "type": "number"
+          },
+          "transport": {
+            "type": "number"
+          },
+          "food": {
+            "type": "number"
+          },
+          "purchases": {
+            "type": "number"
+          }
+        }
+      },
+      "AnswerSet": {
+        "type": "object",
+        "properties": {
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewAnswer"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "constantsVersion": {
+                "type": "string"
+              },
+              "questionnaireVersion": {
+                "type": "string"
+              },
+              "countryCode": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "NewPlan": {
+        "type": "object",
+        "properties": {
+          "selectedActions": {
+            "$ref": "#/components/schemas/NewSelectedActions"
+          },
+          "skippedActions": {
+            "$ref": "#/components/schemas/SkippedAction"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "actionsVersion": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      },
+      "Category": {
+        "type": "string",
+        "enum": [
+          "housing",
+          "transport",
+          "food",
+          "purchases"
+        ]
+      },
+      "Campaign": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "isHidden": {
+            "type": "boolean"
+          },
+          "redirectDestination": {
+            "type": "string",
+            "enum": [
+              "test",
+              "homepage"
+            ]
+          },
+          "allowedCountries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "NewCampaign": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "redirectDestination": {
+            "type": "string",
+            "enum": [
+              "test",
+              "homepage"
+            ]
+          },
+          "allowedCountries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UpdateCampaign": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "isHidden": {
+            "type": "boolean"
+          }
+        }
+      },
+      "FeedbackCard": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "sortKey": {
+            "type": "string"
+          }
+        }
+      },
+      "Question": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sortKey": {
+            "type": "string"
+          },
+          "questionText": {
+            "type": "string"
+          },
+          "descriptionText": {
+            "type": "string"
+          },
+          "descriptionTranslationKey": {
+            "type": "string"
+          },
+          "formula": {
+            "type": "string"
+          },
+          "variableName": {
+            "type": "string"
+          },
+          "relatedVariableName": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "choiceText": {
+                  "type": "string"
+                },
+                "choiceValue": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                },
+                "choiceTranslationKey": {
+                  "type": "string"
+                },
+                "relatedVariableName": {
+                  "type": "string"
+                },
+                "relatedVariableValue": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "choiceText",
+                "choiceValue",
+                "choiceTranslationKey"
+              ]
+            }
+          },
+          "displayCondition": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DisplayCondition"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "sortKey",
+          "questionText",
+          "formula",
+          "variableName",
+          "label",
+          "choices"
+        ]
+      },
+      "RawRecommendedAction": {
+        "type": "object",
+        "properties": {
+          "impactFormulas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "conditions": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DisplayCondition"
+                  }
+                },
+                "formula": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "conditions",
+                "formula"
+              ]
+            }
+          },
+          "category": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "displayCondition": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DisplayCondition"
+            }
+          },
+          "skipIdsIfSelected": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "impactFormulas",
+          "category",
+          "id",
+          "tags",
+          "title",
+          "type",
+          "skipIdsIfSelected"
+        ]
+      },
+      "DisplayCondition": {
+        "type": "object",
+        "properties": {
+          "variableName": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "variableName",
+          "operator",
+          "value"
+        ]
+      }
+    }
+  }
+}

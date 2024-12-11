@@ -1,0 +1,34 @@
+{
+  "answers": [
+    {
+      "category": "housing",
+      "question": "How many people live in your household? (including you)",
+      "choice": "2"
+    },
+    {
+      "category": "transport",
+      "question": "How many kilometres per week do you typically drive by car?",
+      "choice": "I don't drive"
+    },
+    {
+      "category": "food",
+      "question": "What describes best your eating habits?",
+      "choice": "I don´t eat meat, but I do eat fish"
+    },
+    {
+      "category": "food",
+      "question": "How much do you eat compared to the average person in your country at a meal?",
+      "choice": "About the same amount"
+    },
+    {
+      "category": "food",
+      "question": "How often do you have beef as part of your meal?",
+      "choice": "1-3 times a week"
+    }
+  ],
+  "demographics": {
+    "age": 66,
+    "gender": "Other"
+  },
+  "totalFootprint": "1010"
+}

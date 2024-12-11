@@ -1,0 +1,21 @@
+@startuml
+
+object user
+user : id = "572a495f-bd4c-4645-8890-cc791a38b2ec"
+
+
+object question
+question : id "8Eeok51Gq6JoMHzrZ7bc"
+question : text = "How KM do you travel per week by car?"
+question : formula = "VALUE * 1000 / (7*24*3600)"
+question : variableName = "AVG_CAR_TRAVEL_VELOCITY"
+question : choices = [{text: "100 km", value: 100}, {text: "50 km", value: 50}, ...]
+
+object answer
+answer : value = 100
+
+
+user o-- answer
+answer *-- question
+
+@enduml

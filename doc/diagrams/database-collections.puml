@@ -1,0 +1,129 @@
+@startuml Database collections
+
+object anonymousUser {
+  answers
+  latestAnswer
+}
+
+object user {
+  answers (subcoll)
+  id
+  latestAnswerAt
+  latestDemographicAt
+  latestPlanAt
+  linkCreatedAt
+  linkToken
+  linkUsed
+  magicLinkToken
+  userCreatedAt
+}
+
+object answers {
+  demographic
+  metaData
+  originalFootprint
+  positioningAnswer
+  questions
+  plans (subcoll)
+}
+
+object plans {
+  actualizedFootprint
+  metaData
+  pickedRecommendations
+  potentialFootprint
+}
+
+object constantsContent {
+  DE
+  DEFAULT
+  EE
+  FI
+  GR
+  IT
+  PT
+  SI
+  TR
+  importDate
+}
+
+object questions {
+  DE
+  EE
+  FI
+  GR
+  IT
+  PT
+  SI
+  TR
+  importDate
+}
+
+object question {
+  choices
+  displayCondition
+  descriptionText
+  descriptionTranslationKey
+  formula
+  id
+  label
+  questionText
+  relatedVariableName
+  sortKey
+  variableName
+}
+
+object recommendations {
+  DE
+  EE
+  FI
+  GR
+  IT
+  PT
+  SI
+  TR
+  importDate
+}
+
+object action {
+  actionChoices
+  displayCondition
+  formula
+  questionId
+  recommendationDescription
+  recommendationTitle
+  recommendationType
+  variableName
+}
+
+object challengeIdea {
+  category
+  displayCondition
+  linkedActionIdentifier
+  recommendationDescription
+  recommendationDescriptionTranslationsKey
+  recommendationId
+  recommendationIdentifier
+  recommendationTitle
+  recommendationType
+}
+
+package Firestore <<Database>> {
+  map COLLECTIONS {
+    anonymousUsers *--> anonymousUser
+    users *--> user
+    constantsContent *--> constantsContent
+    questions *-> questions
+    recommendations *--> recommendations
+  } 
+}
+
+anonymousUser --> answers
+user -> answers
+answers -> plans
+questions -> question
+recommendations --> action
+recommendations --> challengeIdea
+
+
+@enduml

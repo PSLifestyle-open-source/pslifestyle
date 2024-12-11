@@ -1,0 +1,56 @@
+{
+  "introToDemographic": {
+    "paragraph1": "A few more optional questions.",
+    "paragraph2": "There’s a couple of additional questions we’d like to ask you to learn more about how your answers correlate with your demographic.",
+    "paragraph3": "You can answer these now or later.",
+    "paragraph4": "Answering these helps the planet",
+    "title": "All done?"
+  },
+  "introToPlan": {
+    "paragraph1": "See the impact of the tips you chose, and go back for more to get your footprint right down to where you want to be.",
+    "paragraph2": "Mark your actions complete and track how your impact goes down, step by step.",
+    "title": "Next up: Your plan"
+  },
+  "introToQuestionnaire": {
+    "paragraph1": "THIS PAGE WILL BE REMOVED",
+    "paragraph2": "THIS PAGE WILL BE REMOVED",
+    "title": "THIS PAGE WILL BE REMOVED"
+  },
+  "introToQuestionnaireCategory": {
+    "food": {
+      "paragraph1": "The impact of your transportation habits has been calculated.",
+      "paragraph2": "Let’s have a look at how you eat!",
+      "title": "Food"
+    },
+    "housing": {
+      "paragraph1": "First, let's see how you live!",
+      "paragraph2": "  ",
+      "title": "Housing"
+    },
+    "purchases": {
+      "paragraph1": "The impact of your eating habits has been calculated.",
+      "paragraph2": "To save money or to go shopping - let's find out!",
+      "title": "Purchases"
+    },
+    "transport": {
+      "paragraph1": "The impact of your living habits has been calculated.",
+      "paragraph2": "Now, let’s have a look at how you get from one place to another!",
+      "title": "Transport and travel"
+    }
+  },
+  "introToRecommendations": {
+    "paragraph1": "Based on your results, here are tailored recommendations for you to choose from. They help you reduce your carbon footprint, improve your life and save money, too. Build your plan from the recommendations that fit your lifestyle.",
+    "paragraph2": " ",
+    "title": "Recommendations for you"
+  },
+  "introToResults": {
+    "paragraph1": "THIS PAGE WILL BE REMOVED",
+    "paragraph2": "THIS PAGE WILL BE REMOVED",
+    "title": "THIS PAGE WILL BE REMOVED"
+  },
+  "outroOfQuestionnaire": {
+    "paragraph1": "Your answers help us learn more about sustainability",
+    "paragraph2": "If you're ready, click the button below to see your results. You can also go back and change your answers.",
+    "title": "Thank you!"
+  }
+}

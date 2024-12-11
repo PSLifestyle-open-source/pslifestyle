@@ -1,0 +1,22 @@
+# Compiled JavaScript files
+lib/**/*.js
+lib/**/*.js.map
+lib/**/*.json
+
+# TypeScript v1 declaration files
+typings/
+
+# Node.js dependency directory
+node_modules/
+
+**/credentials.json
+**/fb_credentials.json
+
+.env.dev
+.env.prod
+
+# Don't persist translations except default one
+enduser-ui/public/locales/*
+!enduser-ui/public/locales/en-GB
+src/CloudFunctions/Utilities/EmailTranslations_backup/
+*-debug.log

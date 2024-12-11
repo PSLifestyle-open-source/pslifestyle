@@ -1,0 +1,17 @@
+{
+  "buttonGoToRecommendations": "Your recommendations",
+  "buttonNextQuestion": "Next",
+  "buttonPreviousQuestion": "Back",
+  "buttonSaveAnswers": "See your results",
+  "currentFootprint": "Your carbon footprint: {{footprintInNumber}} kgCO2e",
+  "currentFootprintDuringTest": "Based on your answers so far, your footprint is",
+  "extraQuestionsYes": "Sure, I can answer",
+  "goToResults": "Go to results",
+  "retakeAlert": {
+    "description": "We noticed you finished taking test in the past. If you finish retaking the test, your old plan will be lost and you will need to recreate your plan in the results page that will follow after finishing the questionnaire.",
+    "retakeTestConfirmation": "Retake the test",
+    "title": "Retaking the test?"
+  },
+  "retakeQuestionnaireWarning": "We have detected that you already have a plan. If you finish retaking the test, your old plan will be lost and you will need to recreate your plan in the results page that will follow after finishing the questionnaire.",
+  "viewPlan": "View your plan"
+}

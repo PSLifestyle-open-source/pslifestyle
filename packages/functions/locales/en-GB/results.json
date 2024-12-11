@@ -1,0 +1,152 @@
+{
+  "breakdownTitle": "Your carbon footprint breakdown",
+  "calculationBasis": "Calculation basis",
+  "categoryBasedCallToAction": {
+    "food": {
+      "description": "Do you know how much CO2 food consumption generates? There are many ways to reduce it, and few easy tips could also save you hundreds of euros per year.",
+      "title": "See how you can lower your climate impact"
+    },
+    "housing": {
+      "description": "Do you know how much energy your home consumes? There are many ways to reduce it, and few easy tips could also save you hundreds of euros per year.",
+      "title": "See how you can lower your climate impact"
+    },
+    "purchases": {
+      "description": "Do you know how much CO2 unneeded purchases generates? There are many ways to reduce it, and few easy tips could also save you hundreds of euros per year.",
+      "title": "See how you can lower your climate impact"
+    },
+    "transport": {
+      "description": "Do you know how much CO2 traveling generates? There are many ways to reduce it, and few easy tips could also save you hundreds of euros per year.",
+      "title": "See how you can lower your climate impact"
+    }
+  },
+  "comparedTo": "Compared to",
+  "comparedToAllCountriesAverages": "Your placement against others",
+  "comparisonString": {
+    "higherThanAverage": "Higher than <bolder>people in your country</bolder>",
+    "higherThanAverageEU": "Higher than <bolder>people in Europe</bolder>",
+    "higherThanTarget": "Higher than <bolder>1.5 degree target</bolder>",
+    "lowerThanAverage": "Lower than <bolder>people in your country</bolder>",
+    "lowerThanAverageEU": "Lower than <bolder>people in Europe</bolder>",
+    "lowerThanTarget": "Lower than <bolder>1.5 degree target</bolder>",
+    "sameAsAverage": "The same as <bolder>people in your country</bolder>",
+    "sameAsAverageEU": "The same as <bolder>people in Europe</bolder>",
+    "sameAsTarget": "The same as <bolder>1.5 degree target</bolder>"
+  },
+  "countryAverage": {
+    "DE": "Germany average",
+    "EE": "Estonia average",
+    "EU": "Europe average",
+    "FI": "Finland average",
+    "GR": "Greece average",
+    "IT": "Italy average",
+    "PL": "Poland average",
+    "PT": "Portugal average",
+    "SI": "Slovenia average",
+    "TR": "Turkey average"
+  },
+  "footprintFromCategory": "Carbon footprint from this category",
+  "goToRecommendationsProfileCard": "See the tips just for you",
+  "greenCTA": {
+    "button": "See the tips just for you",
+    "description": "Now see how to lower your climate impact!"
+  },
+  "labels": {
+    "alcohol": "Alcohol",
+    "baseline_diet": "Other food (grains, vegetables, sweets etc.)",
+    "beef": "Beef",
+    "beef_cold_cuts_or_hard_cheese": "Beef, cold cuts or hard cheese",
+    "beef_lamb": "Beef and lamb",
+    "beverages": "Beverages",
+    "building_and_electricity": "Building and electricity",
+    "car": "Car",
+    "cheese": "Cheese",
+    "chicken_fish_or_eggs": "Chicken, fish or eggs",
+    "cottage": "Holiday home or cottage",
+    "dairy": "Dairy",
+    "eggs_or_dairy": "Eggs or dairy",
+    "ferry": "Ferry",
+    "fish_seafood": "Fish and seafood",
+    "flights": "Flights",
+    "hard_cheese": "Hard cheese",
+    "heating_and_warm_water": "Heating and warm water",
+    "luxury_hotel": "Luxury hotel",
+    "motorcycle": "Motorcycle",
+    "not_recycling": "Not recycling",
+    "pets": "Pets",
+    "pork_chicken_fish_eggs_or_soft_cheese": "Pork, chicken, fish, eggs or soft cheese",
+    "pork_chicken_fish_or_eggs": "Pork, chicken, fish or eggs",
+    "pork_chicken_or_eggs": "Pork, chicken or eggs",
+    "pork_chicken_or_fish": "Pork, chicken or fish",
+    "public_transport": "Public transport",
+    "public_transport_vacation": "Public transport (vacation)",
+    "restaurant_meals": "Restaurant meals",
+    "shopping": "Shopping",
+    "wasted_food": "Food waste"
+  },
+  "makeYourActionPlan": "See the tips just for you",
+  "makeYourPlanButton": "See the tips just for you",
+  "myFootprint": "Your carbon footprint",
+  "noResultsYet": "It seems that you have not finished the questionnaire, so we can't yet calculate your results or come up with fitting recommendations. Take the test or log in to get your latest results!",
+  "pageUnderConstruction": "This page is still under construction. Please relax while watching this picture of a forest instead. If you really want to read more in-depth information about calculations you can find it in <Link>pslifestyle.net</Link>",
+  "pageUnderConstructionWithoutLink": "You can find the calculation basis in a separate document on the <a href=\"https://pslifestyle.eu/resources\">project web page.</a> Scroll down on the page to find the calculation basis document.",
+  "peopleInCountry": "People in your country",
+  "peopleInEurope": "People in Europe",
+  "profileCard": {
+    "greenGourmet": {
+      "title": "You are a green gourmet",
+      "variant1": "You know that the way to the heart is through the stomach. You also know how important food is for a healthier life and the environment. In terms of housing, do you know how much energy your home uses? See what else you can do and make your plan from recommendations tailored to you.",
+      "variant2": "You know that the way to the heart – and healthier life - is through the stomach. You also know the impact of food on the environment. Travel wise, you could try to reduce your impact on the environment. See what you can do and make your plan from recommendations tailored to you.",
+      "variant3": "You know that the way to the heart – and healthier life - is through the stomach. You also know the impact of food on the environment. Shopping wise, you are on the high side. Maybe you could do with little less? See what else you could do, from recommendations tailored to you."
+    },
+    "heroOfSustainableEverydayLiving": {
+      "title": "You are a hero of sustainable everyday living",
+      "variant1": "Congratulations! Your carbon footprint is already well below the average. This is wonderful! Don’t be modest - share the secrets of the good life with your friends and invite them to take the test! The planet will thank you, too."
+    },
+    "qualityConsciousIndulger": {
+      "title": "You are a quality-conscious indulger",
+      "variant1": "You understand the impact your purchase choices have on your lifestyle and the planet. You really know how to choose quality over quantity. Housing wise, do you know how much energy your home uses? See what else you can do and make your plan from the recommendations tailored to you.",
+      "variant2": "You understand the impact your purchases have on your lifestyle and the environment. You really know how to choose quality over quantity. Travel wise, you could try to reduce your impact on the environment. See what else you could do from the recommendations tailored to you",
+      "variant3": "You understand the impact your purchases have on your lifestyle and the environment. You really know how to choose quality over quantity. Food wise, you may rely too much on animal-based diet. See what else you can do and make your plan from the recommendations tailored for you."
+    },
+    "responsibleTraveler": {
+      "title": "You are a responsible traveler",
+      "variant1": "You are a true explorer, and you understand the impact of travel on the planet. In terms of housing, do you know how much energy your home uses? There are many ways to reduce it and save money. See what else you can do and make your plan from recommendations tailored to you.",
+      "variant2": "You are a true explorer, and you understand the impact of travel on the planet. When it comes to food, you may rely too much on animal-based diet. You could add more vegetarian meals to your week. See what else you could do and make your plan from recommendations tailored to you.",
+      "variant3": "You are a true explorer, and you understand the impact of travel on the planet. In terms of shopping, you are on the high side. Do you think you could do with little less, and save some money too? See what else you could do and make your plan from recommendations tailored to you."
+    },
+    "wiseHomeLover": {
+      "title": "You are a wise home lover",
+      "variant1": "You cherish and care for your home and its impact on the planet. In terms of travel, you could try to combine trips to reduce your impact on the environment or consider alternative forms of transport. See what else you can do and build your plan from recommendations tailored to you.",
+      "variant2": "You cherish and care for your home and its impact on the planet. When it comes to food, you may rely too much on an animal-based diet. You could try adding more vegetarian meals to your week. See what else you could do and build your plan from the recommendations tailored to you.",
+      "variant3": "You cherish and care for your home and its impact on the planet. When it comes to shopping, you are on the high side. Do you think you could do with a little less, and save some money too? See what else you could do and build your plan from the recommendations tailored to you."
+    },
+    "wonderfulOpportunity": {
+      "title": "You are a wonderful opportunity",
+      "variant1": "Your footprint is indeed large. You may not have realised the impact your lifestyle has on the planet, but by making more sustainable choices you can really make a difference. Start today and build your plan from recommendations tailored to you."
+    }
+  },
+  "result": "Result",
+  "shareResults": "Share your results",
+  "shareResultsDownloadComplete": "Image downloaded successfully!",
+  "shareResultsSocialMedia": "Invite your friends!",
+  "shareResultsText": "Download this social media friendly image to share your carbon footprint calculation results to the ones closest to you!",
+  "shareResultsTitle": "Share your results",
+  "shareableResults": {
+    "iProduce": "I produce...",
+    "linkTagline": "What's your impact?",
+    "title": "I calculated my carbon footprint"
+  },
+  "target": "Target by 2030:",
+  "targetComparisonLabel": "Target by 2030",
+  "targetTargetVisualization": "Target by 2030",
+  "topImpacts": "Top {{numberOfImpacts}} areas to improve",
+  "totalFootprintCardText": {
+    "higherThanTarget": "Looks like you would have to lower your carbon footprint by {{percentToTarget}}% by the year 2030 to get your lifestyle to a sustainable level. Start by building your plan from the recommendations tailored for you.",
+    "lowerThanTarget": "Great job, your footprint is {{percentBelowTarget}}% lower than the 1.5 degree target.",
+    "sameAsTarget": "Your footprint is on track to the 1.5 degree target."
+  },
+  "totalFootprintCardTitle": "Your annual footprint",
+  "yourAnswers": "Your answers",
+  "yourFootprint": "Your carbon footprint",
+  "yourTotalFootprint": "Your total carbon footprint: {{footprintInNumber}} kgCO2e"
+}

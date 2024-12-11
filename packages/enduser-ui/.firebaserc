@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "your-own-project"
+  },
+  "targets": {
+    "your-own-project": {
+      "hosting": {
+        "enduser-ui": [
+          "your-own-project"
+        ]
+      }
+    }
+  }
+}

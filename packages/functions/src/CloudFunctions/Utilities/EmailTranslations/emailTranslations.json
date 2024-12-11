@@ -1,0 +1,11 @@
+{
+  "en-GB": {
+    "subject": "Sign in to PSLifestyle",
+    "greeting": "Hey there! Click the link below to sign in to PSLifestyle",
+    "clickHereToSignIn": "Click here to sign in",
+    "signInPersistence": "You'll stay logged in until your session expires, you log out or clear your browser cache.",
+    "info_1": "If this is your first time signing in, you have just created an account for yourself and you are able to save your responses.",
+    "info_2": "If you sign out, just enter your email on the website and we'll send you a link just like this one to sign in.",
+    "info_3": "If you are a returning user, welcome back! Let's change the world together."
+  }
+}

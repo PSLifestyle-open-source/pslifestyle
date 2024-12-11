@@ -1,0 +1,28 @@
+@startuml PSLifestyle components
+
+
+actor "End user" as user
+
+ frame "Front end" {
+        node "Login" as login
+        node "Questions UI\nand calculation engine" as fpui
+        node "Plans and actions (TBD)" as apui
+  }
+  frame "Google Cloud back end"{
+        node "Firebase API and access control" as dbapi
+        node "Answers & actions saving (TBD)" as writefuncs
+        node "Firestore database" as db
+        node "Open dataset aggregation/anonymization\nto storage bucket" as opendata
+  }
+login -> dbapi
+user -->> fpui
+fpui -> apui
+apui <-> dbapi
+user --> apui
+user --> login
+fpui <-> dbapi
+fpui -->> writefuncs
+dbapi <-> db
+writefuncs -> db
+db -> opendata
+@enduml

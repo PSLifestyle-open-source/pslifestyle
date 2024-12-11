@@ -1,0 +1,103 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended",
+    "plugin:storybook/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "rules": {
+    // note you must disable the base rule as it can report incorrect errors
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["error"],
+    "no-console": "off",
+    "react/jsx-no-bind": "error",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/setupTests.ts",
+          "**/*config.ts",
+          "**/testHelpers.tsx",
+          "**/cypress/**"
+        ]
+      }
+    ],
+    "import/order": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "max-len": ["warn", { "code": 150, "ignoreStrings": true }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "no-shadow": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      // feel free to replace with your preferred file pattern - eg. 'src/**/*Slice.ts'
+      "files": ["src/**/*Slice.ts"],
+      // avoid state param assignment
+      "rules": { "no-param-reassign": ["error", { "props": false }] }
+    }
+  ]
+}

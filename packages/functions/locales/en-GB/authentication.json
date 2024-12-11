@@ -1,0 +1,21 @@
+{
+  "changeEmail": "Change sign in email",
+  "changeEmailDescription": "Change the email you use to sign in. You'll need to click the link we email you in your current email to confirm this. \nType the new email address below.",
+  "clickLink": "Click the link we have sent to your email. The link will be valid for 15 minutes. It will open a new tab in your browser and you will stay logged in for two hours or until you log out or empty your browser cache.",
+  "continueWithoutSigningIn": "Continue without signing in",
+  "didNotReceiveLink": "Did not receive a link? Send email again.",
+  "differentDevice": "Looks like you opened the email link using a different device or browser. We need you to re-enter your email address to continue signing in.",
+  "emailSent": "Email sent",
+  "emailUpdated": "Email successfully updated!",
+  "enterEmail": "Just enter your email and you are ready",
+  "invalidEmail": "The email is invalid. Check for typos and unusual characters.",
+  "invalidEmailTitle": "Magic link verification failed",
+  "removeMe": "Remove me from the service",
+  "removeMeConfirmation": "Are you sure you want to delete your user account and all your data from the service? After this, it is not possible to restore your data.",
+  "removingUser": "Removing yourself from the service means the complete deletion of all user data related to you. You'll need to click the link we've sent to your email to confirm this.",
+  "removingUserError": "Error occurred during deletion of your account. Try again or contact us!",
+  "sendLink": "Sign in using email",
+  "signInAcceptance": "By signing in you guarantee that you have read the <Link>privacy statement</Link> and accept that your personal data (email address together with the information provided while taking the test) will be processed for the purpose of calculating your carbon footprint and providing recommendations to reduce it. Additionally, you guarantee that you are at least 16 years of age.",
+  "userHasDataAlready": "This email address already has a saved plan. You must login to be able to manage your plan or re-take test.",
+  "yourAnswersHasBeenSaved": "Your answers have been saved. Please use the sent link to login and continue your green journey."
+}

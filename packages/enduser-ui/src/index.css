@@ -1,0 +1,355 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: "Poppins", "Roboto", sans-serif;
+  }
+
+  #root {
+    @apply min-h-screen bg-basic-background;
+  }
+
+  /*********** Baseline, reset styles ***********/
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  /* Removes default focus */
+  input[type="range"]:focus {
+    outline: none;
+  }
+
+  /******** Chrome, Safari, Opera and Edge Chromium styles ********/
+  /* slider track */
+  input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #e1e5e5;
+    border-radius: 0.5rem;
+    height: 8px;
+  }
+
+  /* slider thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    margin-top: -12px;
+    /* Centers thumb on the track */
+    background-color: #1d9635;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+  }
+
+  input[type="range"]:focus::-webkit-slider-thumb {
+    outline: 3px solid #1d9635;
+    outline-offset: 0.125rem;
+  }
+
+  /*********** Firefox styles ***********/
+  /* slider track */
+  input[type="range"]::-moz-range-track {
+    background-color: #e1e5e5;
+    border-radius: 0.5rem;
+    height: 8px;
+  }
+
+  /* slider thumb */
+  input[type="range"]::-moz-range-thumb {
+    background-color: #1d9635;
+    border: none;
+    /*Removes extra border that FF applies*/
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+  }
+
+  input[type="range"]:focus::-moz-range-thumb {
+    outline: 3px solid #1d9635;
+    outline-offset: 0.125rem;
+  }
+
+  .invisible-shareable {
+    position: fixed;
+    left: 9999px;
+  }
+
+  #CookiebotWidget {
+    bottom: 100px !important;
+  }
+
+  /*
+    xl - extra large
+    lg - large
+    md - medium
+    sm - small
+    xs - extra small
+
+    eb - extra bold
+    b - bold
+    sb - semi bold
+     */
+}
+
+@layer utilities {
+  .headline-xl-eb {
+    font-size: 3rem;
+    line-height: 54px;
+    font-weight: 800;
+  }
+
+  .headline-lg-eb {
+    font-size: 2rem;
+    line-height: 38px;
+    font-weight: 800;
+  }
+
+  .headline-md-b {
+    font-size: 1.75rem;
+    line-height: 34px;
+    font-weight: 700;
+  }
+
+  .headline-sm-sb {
+    font-size: 1.5rem;
+    line-height: 30px;
+    font-weight: 600;
+  }
+
+  .headline-sm-b {
+    font-size: 1.5rem;
+    line-height: 30px;
+    font-weight: 700;
+  }
+
+  .headline-sm-eb {
+    font-size: 1.5rem;
+    line-height: 30px;
+    font-weight: 800;
+  }
+
+  .headline-xs-eb {
+    font-size: 1.375rem;
+    line-height: 28px;
+    font-weight: 800;
+  }
+
+  .headline-xs-sb {
+    font-size: 1.375rem;
+    line-height: 28px;
+    font-weight: 600;
+  }
+
+  .title-lg {
+    font-size: 1.25rem;
+    line-height: 28px;
+    font-weight: 700;
+  }
+
+  .title-md {
+    font-size: 1.125rem;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  .title-sm {
+    font-size: 1rem;
+    line-height: 22px;
+    font-weight: 700;
+  }
+
+  .body-lg {
+    font-size: 1rem;
+    line-height: 24px;
+    font-weight: 400;
+  }
+
+  .body-md {
+    font-size: 0.875rem;
+    line-height: 22px;
+    font-weight: 400;
+  }
+
+  .body-sm {
+    font-size: 0.75rem;
+    line-height: 20px;
+    font-weight: 400;
+  }
+
+  .body-lg-b {
+    font-size: 1rem;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  .body-md-b {
+    font-size: 0.875rem;
+    line-height: 22px;
+    font-weight: 700;
+  }
+
+  .body-sm-b {
+    font-size: 0.75rem;
+    line-height: 20px;
+    font-weight: 700;
+  }
+
+  .meta-lg {
+    font-size: 1rem;
+    line-height: 24px;
+    font-weight: 400;
+    @apply text-grey-80;
+  }
+
+  .meta-md {
+    font-size: 0.875rem;
+    line-height: 22px;
+    font-weight: 400;
+    @apply text-grey-80;
+  }
+
+  .meta-sm {
+    font-size: 0.75rem;
+    line-height: 20px;
+    font-weight: 400;
+    @apply text-grey-80;
+  }
+
+  .label-lg {
+    font-size: 1rem;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  .label-md {
+    font-size: 0.875rem;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .label-sm {
+    font-size: 0.75rem;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .button-lg {
+    font-size: 1rem;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  .button-md {
+    font-size: 0.875rem;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  .textlink-md {
+    font-size: 0.875rem;
+    line-height: 20px;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  @keyframes moveandwave {
+    0% {
+      transform: translateX(6%) rotate(0deg);
+      transform-origin: 50% 100%;
+      bottom: -80px;
+    }
+
+    1% {
+      opacity: 1;
+    }
+
+    10%,
+    50%,
+    90% {
+      transform: translateX(8%) rotate(12deg);
+    }
+
+    30%,
+    70% {
+      transform: translateX(-8%) rotate(-12deg);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0%) rotate(0deg);
+      bottom: 25vh;
+      width: 0;
+    }
+  }
+
+  .move-and-wave-animation {
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    animation: moveandwave 1.8s ease;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    pointer-events: none;
+  }
+
+  .move-and-wave-animation-disabled {
+    display: none;
+  }
+
+  .secondary-background {
+    @apply relative;
+    @apply z-10;
+    @apply overflow-hidden;
+  }
+
+  .secondary-background:before {
+    @apply -z-10;
+    @apply absolute;
+    @apply left-0;
+    @apply top-0;
+    @apply w-full;
+    @apply h-full;
+  }
+
+  .bg-windmill:before {
+    mask: url("/images/icons/windmill.svg") no-repeat;
+    -webkit-mask: url("/images/icons/windmill.svg") no-repeat;
+  }
+
+  .bg-windmill-small {
+    @apply secondary-background;
+    @apply sm:bg-contain;
+  }
+
+  .bg-windmill-small:before {
+    mask: url("/images/icons/windmill-small.svg") no-repeat;
+    -webkit-mask: url("/images/icons/windmill-small.svg") no-repeat;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    @apply sm:[mask-size:cover];
+    @apply sm:[-webkit-mask-size:cover];
+  }
+
+  .force-svg-full-width svg {
+    width: 100%;
+  }
+}
+
+body {
+  /*This prevents layout shift when modal changes body position to static*/
+  min-width: 320px;
+  @apply bg-basic-background;
+  left: 0;
+  right: 0;
+}
+
+[data-radix-popper-content-wrapper] {
+  width: 100%;
+  padding: 0 1.5rem;
+  min-width: auto !important;
+}

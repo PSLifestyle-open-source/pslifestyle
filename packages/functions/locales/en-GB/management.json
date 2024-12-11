@@ -1,0 +1,38 @@
+{
+  "campaignManager": {
+    "allowedCountriesLabel": "Allowed countries with this campaign",
+    "answersCount": "Answers count",
+    "areYouSureToHide": "Are you sure you want to hide this campaign? You will not be able to see it again in this panel.",
+    "campaignNameLabel": "Campaign Name",
+    "copyCampaignLink": "Copy Campaign Link",
+    "createTitle": "Create new campaign",
+    "createdAtLabel": "Created at",
+    "failedToLoad": "Failed to load campaigns. If you are sure there should be any campaigns, contact development team.",
+    "feedbacksCount": "Feedbacks count",
+    "hideLink": "Hide link",
+    "loadStatistics": "Load statistics",
+    "openCampaignCreator": "Open campaign creator",
+    "plansCount": "Plans count",
+    "redirectDestination": {
+      "homepage": "Homepage",
+      "testPage": "Test page"
+    },
+    "redirectDestinationLabel": "Redirect Destination",
+    "submitNewCampaign": "Create new campaign",
+    "title": "Campaign Link Management"
+  },
+  "userManager": {
+    "addNewRole": "Add new role to user: ",
+    "campaignManager": {
+      "countriesLabel": "Countries to manage campaigns for"
+    },
+    "deleteRole": "Delete role",
+    "genericErrorSearchForUser": "Unknown error occurred when trying to find the user.",
+    "roleNameLabel": "Role name",
+    "searchButton": "Search for user",
+    "submitUserRoles": "Save user roles",
+    "targetUserEmailLabel": "Email address of user to modify",
+    "title": "User Settings Management",
+    "userNotFoundErrorSearchForUser": "User not found!"
+  }
+}

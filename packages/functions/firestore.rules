@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+      match /constantsContent/{constantSet} {
+        allow read: if true
+      }
+      match /constantsContent/{constantSet}/{countryCode}/constants {
+        allow read: if true
+      }
+      match /constantsContent/{constantSet}/{countryCode}/{document=**} {
+        allow read: if true
+      }
+      match /feedbackCards/{feedbackCardsVersion} {
+        allow read: if true
+      }
+      match /feedbackCards/{feedbackCardsVersion}/{countryCode}/{document=**} {
+        allow read: if true
+      }
+      match /questionContent/{questionSet} {
+        allow read: if true
+      }
+      match /questionContent/{questionSet}/imports/{document=**} {
+        allow read: if true
+      }
+      match /questions/{questionSet} {
+        allow read: if true
+      }
+      match /questions/{questionSet}/{countryCode}/{document=**} {
+        allow read: if true
+      }
+      match /recommendations/{recommendationSet} {
+        allow read: if true
+      }
+      match /recommendations/{recommendationSet}/{countryCode}/{document=**} {
+        allow read: if true
+      }
+      match /actions/{actionSet} {
+        allow read: if true
+      }
+      match /actions/{actionSet}/{countryCode}/{document=**} {
+        allow read: if true
+      }
+      match /campaigns/{campaignId} {
+        allow read: if true
+      }
+      match /users/{userId} {
+        allow read: if request.auth != null && request.auth.uid == userId
+      }
+      match /users/{userId}/answers/{document=**} {
+        allow read: if request.auth != null && request.auth.uid == userId
+      }
+  }
+}
