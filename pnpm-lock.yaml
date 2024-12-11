@@ -92,9 +92,6 @@ importers:
       '@nivo/pie':
         specifier: 0.87.0
         version: 0.87.0(react-dom@18.2.0)(react@18.2.0)
-      '@payloadcms/live-preview-react':
-        specifier: ^0.2.0
-        version: 0.2.0(react@18.2.0)
       '@pslifestyle/common':
         specifier: workspace:*
         version: link:../common
@@ -4007,19 +4004,6 @@ packages:
     engines: {node: '>=8.0.0'}
     requiresBuild: true
     optional: true
-
-  /@payloadcms/live-preview-react@0.2.0(react@18.2.0):
-    resolution: {integrity: sha512-ao7DN2GJFPoipw2cmt2M0tfwmUa0hIn3UxB5EaMv6RduMuOMQlG5hx5ouX3g5wPMcQpyvLwxCuuiQhj1nKMGhA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@payloadcms/live-preview': 0.2.2
-      react: 18.2.0
-    dev: false
-
-  /@payloadcms/live-preview@0.2.2:
-    resolution: {integrity: sha512-FOcg/HOIzzESjoT4vXgM7Pjd+bODodZTKR/pEJWsjLtyARd6NfF3MNWS+tdlfa3TOZrdT8WnHBAKsKyREyE3og==}
-    dev: false
 
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
